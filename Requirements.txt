@@ -1,0 +1,7 @@
+
+Employee:
+Index - Current & Past
+Edit
+Create? 
+
+View Employee status / Department 
