@@ -5,3 +5,10 @@ Edit
 Create? 
 
 View Employee status / Department 
+
+
+Employee Scheme: 
+{id: 1, name: "Name", department: "2", current_employee: true}
+
+Department Scheme:
+{id: 1, name: "Department One"}

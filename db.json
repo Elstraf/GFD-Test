@@ -1,0 +1,29 @@
+{
+  "employees": [
+    { "id": 1, "name": "Bob", "department": "1", "current_employee": true },
+    { "id": 2, "name": "Rob", "department": "2", "current_employee": true },
+    { "id": 3, "name": "Tom", "department": "1", "current_employee": true },
+    {
+      "id": 4,
+      "name": "Some Name",
+      "department": "1",
+      "current_employee": false
+    },
+    {
+      "id": 5,
+      "name": "Some Name two",
+      "department": "2",
+      "current_employee": false
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "name": "Department 1"
+    },
+    {
+      "id": 2,
+      "name": "Department 2"
+    }
+  ]
+}
