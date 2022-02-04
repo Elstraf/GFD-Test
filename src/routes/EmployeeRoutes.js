@@ -27,6 +27,11 @@ export default function EmployeeRoutes() {
                       exact
                       component={(route) => <EmployeeIndex route={route} />}
                     />
+                    <Route
+                      path="/employee/view/:id"
+                      exact
+                      component={(route) => <EmployeeView route={route} />}
+                    />
                   </Switch>
                 </section>
               </CSSTransition>
