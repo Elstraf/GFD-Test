@@ -8,7 +8,7 @@ export default function EmployeeForm({
 }) {
   return (
     <>
-      <div className="box">
+      <div className="block">
         <div className="container-fluid">
           <div className="form-row">
             <div className="form-group col-lg-12">
@@ -35,6 +35,8 @@ export default function EmployeeForm({
                 fullWidth
               />
             </div>
+          </div>
+          <div className="form-row">
             <div className="form-group col-lg-6">
               <InputLabel>Department</InputLabel>
               <Select
