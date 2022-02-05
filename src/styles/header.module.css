@@ -1,0 +1,11 @@
+.box {
+  width: 90vw;
+  height: 100px;
+  background-color: rgb(66, 66, 223);
+}
+
+.box h3 {
+  padding: 10px;
+  text-align: center;
+  color: white;
+}

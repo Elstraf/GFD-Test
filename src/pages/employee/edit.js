@@ -18,8 +18,6 @@ export default function EmployeeEdit({ route }) {
     setDep(dep);
   };
 
-  const handleDepartmentChange = (name, value) => {};
-
   const handleChange = (name, value) => {
     setData({ ...data, [name]: value });
   };

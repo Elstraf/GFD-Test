@@ -5,6 +5,7 @@ import DataTable from "../../components/DataTable";
 import { Button } from "@mui/material";
 import { getEmployees } from "../../api/EmployeeApi";
 import { getDepartments } from "../../api/DepartmentApi";
+import Header from "../../components/Header";
 export default function EmployeeIndex() {
   const [data, setData] = useState(false);
   const [dep, setDep] = useState(false);
@@ -92,24 +93,29 @@ export default function EmployeeIndex() {
   if (data && dep) {
     return (
       <>
+        <Header
+          name="Employee Index"
+          addNew={
+            <Link to={{ pathname: `/employee/create` }}>
+              <strong>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  style={{ marginLeft: 16 }}
+                >
+                  create new employee
+                </Button>
+              </strong>
+            </Link>
+          }
+        />
         <DataTable
           columns={columns}
           options={options}
           rows={data}
           height={500}
         />
-        <Link to={{ pathname: `/employee/create` }}>
-          <strong>
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              style={{ marginLeft: 16 }}
-            >
-              create
-            </Button>
-          </strong>
-        </Link>
       </>
     );
   } else return <>Loading</>;

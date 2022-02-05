@@ -1,12 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
-
+import SidebarStyles from "../styles/sidebar.module.css";
 export default function Sidebar() {
   return (
     <>
-      <div>
+      <div className={SidebarStyles.box}>
         <h1>Links</h1>
         <nav>
-          <NavLink to="/employee">Employee</NavLink>
+          <ul>
+            <li>
+              <NavLink to="/employee">Employee</NavLink>
+            </li>
+          </ul>
         </nav>
       </div>
     </>
