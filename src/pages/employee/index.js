@@ -21,7 +21,6 @@ export default function EmployeeIndex() {
 
     if (id) {
       const data = dep.find((e) => e.id == id);
-      console.log(data);
       return data.name;
     }
     return "yes";
@@ -36,7 +35,11 @@ export default function EmployeeIndex() {
       flex: 1,
       valueGetter: setDepartments,
     },
-    { field: "current_employee", headerName: "Currently Employee", flex: 1 },
+    {
+      field: "current_employee",
+      headerName: "Currently Employee",
+      flex: 1,
+    },
     {
       field: "",
       headerName: "Action",

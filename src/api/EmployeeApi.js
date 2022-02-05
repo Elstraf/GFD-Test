@@ -10,5 +10,10 @@ const getEmployeeSingle = async (id) => {
 
   return res.data;
 };
+const updateEmployee = async (id, obj) => {
+  const res = await axios.put(`http://localhost:3004/employees/${id}`, obj);
 
-export { getEmployeeSingle, getEmployees };
+  return res;
+};
+
+export { getEmployeeSingle, getEmployees, updateEmployee };

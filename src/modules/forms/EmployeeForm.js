@@ -1,22 +1,25 @@
-import { InputLabel, MenuItem, Select, TextField, Button } from "@mui/material";
+import { InputLabel, MenuItem, TextField, Button } from "@mui/material";
+import { Select } from "@material-ui/core";
 
 export default function EmployeeForm({
   data,
   handleChange,
   department,
   handleDepartmentChange,
+  type,
+  handleSave,
 }) {
   return (
     <>
       <div className="block">
-        <div className="container-fluid">
-          <div className="form-row">
+        <div className="container">
+          <div className="row">
             <div className="form-group col-lg-12">
-              <h3>New Topic</h3>
+              <h3>{type === "edit" ? data.name : "New Employee"}</h3>
             </div>
           </div>
 
-          <div className="form-row">
+          <div className="row">
             <div className="form-group col-lg-6">
               <TextField
                 label="Name"
@@ -36,29 +39,34 @@ export default function EmployeeForm({
               />
             </div>
           </div>
-          <div className="form-row">
-            <div className="form-group col-lg-6">
-              <InputLabel>Department</InputLabel>
-              <Select
-                name="department"
-                fullWidth
-                onChange={(e) => {
-                  handleDepartmentChange(e.target.name, e.target.value);
-                }}
-              >
-                {department &&
-                  department.map((dep, key) => {
-                    return <MenuItem value={dep}>{dep.name}</MenuItem>;
-                  })}
-              </Select>
-            </div>
-            <div className="form-group col-lg-1">
-              {/*  <Button onClick={handleSave} variant="contained">
-                Save
-              </Button> */}
-            </div>
-            <div className="form-group col-lg 8"></div>
+          <div className="form-group col-lg-12">
+            <InputLabel>Department</InputLabel>
+            <Select
+              name="department"
+              fullWidth
+              value={data.department ? data.department : ""}
+              onChange={(e) => {
+                handleChange(e.target.name, e.target.value);
+              }}
+            >
+              {department &&
+                department.map((dep, key) => {
+                  return (
+                    <MenuItem key={key} value={dep.id}>
+                      {dep.name}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
           </div>
+          <div className="form-group col-lg-1">
+            <div style={{ paddingTop: 5 }}>
+              <Button onClick={handleSave} variant="contained">
+                Save
+              </Button>
+            </div>
+          </div>
+          <div className="form-group col-lg 8"></div>
         </div>
       </div>
     </>

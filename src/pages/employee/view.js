@@ -1,5 +1,3 @@
-import { CommitSharp } from "@mui/icons-material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import EmployeeForm from "../../modules/forms/EmployeeForm";
 import { getEmployeeSingle } from "../../api/EmployeeApi";
