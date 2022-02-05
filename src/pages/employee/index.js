@@ -3,28 +3,39 @@ import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import DataTable from "../../components/DataTable";
 import { Button } from "@mui/material";
+import { getEmployees } from "../../api/EmployeeApi";
+import { getDepartments } from "../../api/DepartmentApi";
 export default function EmployeeIndex() {
   const [data, setData] = useState(false);
   const [dep, setDep] = useState(false);
 
   const getData = async () => {
-    const res = axios.get("http://localhost:3004/employees");
-    res.then((result) => {
-      console.log(result);
-      setData(result.data);
-    });
+    const res = await getEmployees();
+    setData(res);
+    const dep = await getDepartments();
+    setDep(dep);
+  };
 
-    const dep = axios.get("http://localhost:3004/departments");
-    dep.then((res) => {
-      console.log(res);
-      setDep(res.data);
-    });
+  const setDepartments = (params) => {
+    const id = params.value;
+
+    if (id) {
+      const data = dep.find((e) => e.id == id);
+      console.log(data);
+      return data.name;
+    }
+    return "yes";
   };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 1 },
     { field: "name", headerName: "Name", flex: 1 },
-    { field: "department", headerName: "Department", flex: 1 },
+    {
+      field: "department",
+      headerName: "Department",
+      flex: 1,
+      valueGetter: setDepartments,
+    },
     { field: "current_employee", headerName: "Currently Employee", flex: 1 },
     {
       field: "",
@@ -74,7 +85,7 @@ export default function EmployeeIndex() {
     getData();
   }, []);
 
-  if (data) {
+  if (data && dep) {
     return (
       <>
         <DataTable
