@@ -29,6 +29,7 @@ export default function EmployeeIndex() {
   const columns = [
     { field: "id", headerName: "ID", flex: 1 },
     { field: "name", headerName: "Name", flex: 1 },
+    { field: "surname", headerName: "Surname", flex: 1 },
     {
       field: "department",
       headerName: "Department",
@@ -97,6 +98,18 @@ export default function EmployeeIndex() {
           rows={data}
           height={500}
         />
+        <Link to={{ pathname: `/employee/create` }}>
+          <strong>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              style={{ marginLeft: 16 }}
+            >
+              create
+            </Button>
+          </strong>
+        </Link>
       </>
     );
   } else return <>Loading</>;

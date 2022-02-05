@@ -37,6 +37,11 @@ export default function EmployeeRoutes() {
                       exact
                       component={(route) => <EmployeeEdit route={route} />}
                     />
+                    <Route
+                      path="/employee/create"
+                      exact
+                      component={(route) => <EmployeeCreate route={route} />}
+                    />
                   </Switch>
                 </section>
               </CSSTransition>

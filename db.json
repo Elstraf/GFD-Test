@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Bob bbbb",
       "surname": "Powley",
-      "department": 2,
-      "current_employee": false
+      "department": 1,
+      "current_employee": true
     },
     {
       "id": 2,
@@ -33,7 +33,21 @@
       "name": "Some Name two",
       "surname": "1",
       "department": "2",
-      "current_employee": true
+      "current_employee": false
+    },
+    {
+      "name": "Testing Create",
+      "surname": "Casdasd",
+      "department": 1,
+      "current_employee": false,
+      "id": 6
+    },
+    {
+      "name": "Callum",
+      "surname": "Powley",
+      "department": 2,
+      "current_employee": true,
+      "id": 7
     }
   ],
   "departments": [

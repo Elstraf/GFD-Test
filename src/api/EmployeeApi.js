@@ -15,5 +15,10 @@ const updateEmployee = async (id, obj) => {
 
   return res;
 };
+const createEmployee = async (obj) => {
+  const res = await axios.post(`http://localhost:3004/employees`, obj);
 
-export { getEmployeeSingle, getEmployees, updateEmployee };
+  return res;
+};
+
+export { getEmployeeSingle, getEmployees, updateEmployee, createEmployee };
