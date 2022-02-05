@@ -1,14 +1,29 @@
-import { InputLabel, MenuItem, TextField, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+
+import {
+  InputLabel,
+  MenuItem,
+  TextField,
+  Button,
+  FormControlLabel,
+} from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { Select } from "@material-ui/core";
+import Switch from "@mui/material/Switch";
+import FormGroup from "@mui/material/FormGroup";
 
 export default function EmployeeForm({
   data,
   handleChange,
   department,
-  handleDepartmentChange,
   type,
   handleSave,
+  noneEmployee,
 }) {
+  const [isCurrentEmployee, setIsCurrentEmployee] = useState(
+    type === "edit" ? noneEmployee : false
+  );
   return (
     <>
       <div className="block">
@@ -39,34 +54,63 @@ export default function EmployeeForm({
               />
             </div>
           </div>
-          <div className="form-group col-lg-12">
-            <InputLabel>Department</InputLabel>
-            <Select
-              name="department"
-              fullWidth
-              value={data.department ? data.department : ""}
-              onChange={(e) => {
-                handleChange(e.target.name, e.target.value);
-              }}
-            >
-              {department &&
-                department.map((dep, key) => {
-                  return (
-                    <MenuItem key={key} value={dep.id}>
-                      {dep.name}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
+
+          <div className="row">
+            <div className="form-group col-lg-10">
+              <InputLabel>Department</InputLabel>
+              <Select
+                name="department"
+                fullWidth
+                value={data.department ? data.department : ""}
+                onChange={(e) => {
+                  handleChange(e.target.name, e.target.value);
+                }}
+              >
+                {department &&
+                  department.map((dep, key) => {
+                    return (
+                      <MenuItem key={key} value={dep.id}>
+                        {dep.name}
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+            </div>
+            <div className="form-group col-lg-2">
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Typography>No</Typography>
+                      <Switch
+                        onChange={() => {
+                          !isCurrentEmployee
+                            ? setIsCurrentEmployee(true)
+                            : setIsCurrentEmployee(false);
+                        }}
+                        checked={isCurrentEmployee}
+                      />
+                      <Typography>Yes</Typography>
+                    </Stack>
+                  }
+                  label="Current Employee?"
+                  labelPlacement="top"
+                />
+              </FormGroup>
+            </div>
           </div>
           <div className="form-group col-lg-1">
             <div style={{ paddingTop: 5 }}>
-              <Button onClick={handleSave} variant="contained">
+              <Button
+                onClick={() => {
+                  handleSave(isCurrentEmployee);
+                }}
+                variant="contained"
+              >
                 Save
               </Button>
             </div>
           </div>
-          <div className="form-group col-lg 8"></div>
         </div>
       </div>
     </>

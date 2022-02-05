@@ -5,13 +5,13 @@
       "name": "Bob bbbb",
       "surname": "Powley",
       "department": 2,
-      "current_employee": true
+      "current_employee": false
     },
     {
       "id": 2,
-      "name": "Rob",
-      "surname": "1",
-      "department": "2",
+      "name": "Rob bob topb ",
+      "surname": "1fdsfsd",
+      "department": 2,
       "current_employee": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Some Name two",
       "surname": "1",
       "department": "2",
-      "current_employee": false
+      "current_employee": true
     }
   ],
   "departments": [

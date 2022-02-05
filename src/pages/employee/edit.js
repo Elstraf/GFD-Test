@@ -7,10 +7,12 @@ export default function EmployeeEdit({ route }) {
   console.log(route);
   const [data, setData] = useState(false);
   const [dep, setDep] = useState(false);
+  const [noneEmployee, setNoneEmployee] = useState(false);
 
   const getData = async () => {
     const res = await getEmployeeSingle(route.match.params.id);
     setData(res[0]);
+    setNoneEmployee(res[0].current_employee);
 
     const dep = await getDepartments();
     setDep(dep);
@@ -22,8 +24,10 @@ export default function EmployeeEdit({ route }) {
     setData({ ...data, [name]: value });
   };
 
-  const handleSave = async () => {
-    const res = await updateEmployee(route.match.params.id, data);
+  const handleSave = async (isCurrentEmployee) => {
+    const newData = data;
+    newData["current_employee"] = isCurrentEmployee;
+    const res = await updateEmployee(route.match.params.id, newData);
     console.log(res);
   };
 
@@ -33,7 +37,7 @@ export default function EmployeeEdit({ route }) {
 
   console.log(data);
 
-  if (data) {
+  if (data && dep) {
     return (
       <>
         <EmployeeForm
@@ -42,6 +46,7 @@ export default function EmployeeEdit({ route }) {
           department={dep}
           handleChange={handleChange}
           handleSave={handleSave}
+          noneEmployee={noneEmployee}
         />
       </>
     );
