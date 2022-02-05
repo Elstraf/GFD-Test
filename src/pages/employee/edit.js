@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import { CircularProgress } from "@material-ui/core";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import EmployeeForm from "../../modules/forms/EmployeeForm";
 import { getEmployeeSingle, updateEmployee } from "../../api/EmployeeApi";
 import { getDepartments } from "../../api/DepartmentApi";
+import Header from "../../components/Header";
 
 export default function EmployeeEdit({ route }) {
   console.log(route);
   const [data, setData] = useState(false);
   const [dep, setDep] = useState(false);
   const [noneEmployee, setNoneEmployee] = useState(false);
+  const [loading, setLoading] = useState({ status: false, data: false });
+
+  let history = useHistory();
 
   const getData = async () => {
     const res = await getEmployeeSingle(route.match.params.id);
@@ -23,10 +29,14 @@ export default function EmployeeEdit({ route }) {
   };
 
   const handleSave = async (isCurrentEmployee) => {
+    setLoading({ status: true, data: "Saving" });
     const newData = data;
     newData["current_employee"] = isCurrentEmployee;
     const res = await updateEmployee(route.match.params.id, newData);
-    console.log(res);
+    setLoading({ status: true, data: "Success, Please Wait..." });
+    setTimeout(() => {
+      history.push("/employee");
+    }, 2000);
   };
 
   useEffect(() => {
@@ -38,6 +48,8 @@ export default function EmployeeEdit({ route }) {
   if (data && dep) {
     return (
       <>
+        <Header name="Edit" />
+        {loading.status === true && <CircularProgress />}
         <EmployeeForm
           data={data}
           type="edit"
